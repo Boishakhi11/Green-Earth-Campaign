@@ -1,9 +1,9 @@
 const url = "https://openapi.programming-hero.com/api/categories"
 
 const loadCategories = () => {
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayCategories(data.categories));
+    fetch (url)
+    .then (res => res.json())
+    .then (data => displayCategories(data.categories));
 } 
 
 const displayCategories = (categories) => {
@@ -12,15 +12,55 @@ const displayCategories = (categories) => {
     for(const category of categories){
         const allCategory = document.createElement("div");
 
-        allCategory.innerHTML = `<div>
-                    <ul class="space-y-6">
-                        <li class="text-[16px] text-gray-600 cursor-pointer">${category.category_name}</li>
-                    </ul>
+        allCategory.innerHTML = 
+                  `<div>
+                        <ul class="space-y-6">
+                            <li class="text-[16px] text-gray-600 cursor-pointer">${category.category_name}</li>
+                        </ul>
                    </div>`;
         
                    categoryContainer.append(allCategory);
             
     }
+}
+
+const loadPlants = () => {
+    const url = "https://openapi.programming-hero.com/api/plants";
+
+    fetch (url)
+    .then (res => res.json())
+    .then (data => displayPlants(data.plants));
+}
+
+
+const displayPlants = (plants) => {
+    const plantsContainer = document.getElementById("plants-container");
+    plantsContainer.innerHTML = "";
+
+    for (const plant of plants) {
+        const allPlants = document.createElement("div");
+        allPlants.innerHTML = 
+                    `<div class="border border-green-500 rounded-md shadow-lg p-4 max-h-[450px]">
+                            <img class="h-50 w-full rounded-lg shadow-sm mx-auto" src="${plant.image}"/>
+                            <div class="space-y-3 mt-4">
+                                <h3 class="text-[14px]">${plant.name}</h3>
+                                <p class="text-xs text-gray-600"> ${plant.description}</p>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-[14px] text-green-800">${plant.category}</h3>
+                                    <p class="text-[14px]"> ${plant.price} Nok</p>
+                                </div>
+                                <button class="bg-green-900 text-white w-full rounded-md p-2 cursor-pointer">Add to Cart</button>
+                           </div>   
+                     </div>`;
+        
+        plantsContainer.append(allPlants);
+    }
+}
+
+const loadByCategories = () => {
+  fetch (`https://openapi.programming-hero.com/api/category/${1}`)
+  .then(res => res.json())
+  .then(data => displayCategories(data));
 }
 
 
@@ -32,8 +72,6 @@ const displayCategories = (categories) => {
 
 
 
-
-
-
+loadPlants();
 loadCategories();
 
