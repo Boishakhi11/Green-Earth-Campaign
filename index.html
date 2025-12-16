@@ -21,6 +21,7 @@
 
 </head>
 <body>
+    <!--header starts-->
     <header>
         <div class="navbar bg-green-600 shadow-sm md:px-[132px]">
             <div class="navbar-start">
@@ -39,10 +40,10 @@
                 <a class="btn btn-ghost text-white text-xl">Green Earth</a>
             </div>
             <div class="navbar-center hidden lg:flex">
-                <ul class="menu menu-horizontal px-1 flex gap-2">
-                <li>About</li>
-                <li>Gallery</li>
-                <li>Plant a Tree</li>               
+                <ul class="menu menu-horizontal px-1 flex gap-3">
+                <li class="text-white font-semibold">About</li>
+                <li class="text-white font-semibold">Gallery</li>
+                <li class="text-white font-semibold">Plant a Tree</li>               
                 </ul>
             </div>
             <div class="navbar-end">
@@ -51,6 +52,7 @@
         </div>
     </header>
 
+    <!--banner starts-->
     <section class="md:h-[390px] bg-[#cff0dc] flex">
         <img class="hidden md:block" src="./assets/hero-leaf1.png" alt="leaf decoration"/>
         <div class="flex flex-col justify-center items-center space-y-6 py-10">
@@ -62,11 +64,104 @@
         <img class="hidden md:block" src="./assets/hero-leaf2.png" alt="leaf decoration"/>
     </section>
 
-    <section class="mt-[100px] w-7/12 mx-auto"> 
-       <h1 class="text-3xl font-semibold text-center mb-10">About the Campaign</h1>
-       <div class="flex flex-col md:flex-row gap-10">
+    <!--Choose your tree section-->
+    <section class="mt-[100px] w-11/12 mx-auto space-y-6">
+       <h1 class="text-3xl font-semibold text-center">Choose Your Trees</h1> 
+       <div class="grid grid-cols-5 gap-4">
+           <div class="space-y-5">
+            <h2 class="font-semibold text-xl">Categories</h2>
+                <div id="categories" class="space-y-4">
+                    
+                </div>
+           </div>
+
+           <div id="all-plants" class="grid col-span-3">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div class="border border-green-500 rounded-md shadow-lg p-4">
+                            <img class="h-30 w-30 mx-auto" src="./assets/hero-leaf1.png"/>
+                            <div class="space-y-3">
+                                <h3 class="text-[14px]">Mango Tree</h3>
+                                <p class="text-xs text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ipsam quo vero maiores, nesciunt magni.
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-[14px] text-green-800">Fruit Tree</h3>
+                                    <p class="text-[14px]">500 Nok</p>
+                                </div>
+                                <button class="bg-green-900 text-white w-full rounded-md p-2">Add to Cart</button>
+                           </div>   
+                    </div>
+
+                    <div class="border border-green-500 rounded-md shadow-lg p-4">
+                            <img class="h-30 w-30 mx-auto" src="./assets/hero-leaf1.png"/>
+                            <div class="space-y-3">
+                                <h3 class="text-[14px]">Mango Tree</h3>
+                                <p class="text-xs text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ipsam quo vero maiores, nesciunt magni.
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-[14px] text-green-800">Fruit Tree</h3>
+                                    <p class="text-[14px]">500 Nok</p>
+                                </div>
+                                <button class="bg-green-900 text-white w-full rounded-md p-2">Add to Cart</button>
+                           </div>   
+                    </div>
+
+                    <div class="border border-green-500 rounded-md shadow-lg p-4">
+                            <img class="h-30 w-30 mx-auto" src="./assets/hero-leaf1.png"/>
+                            <div class="space-y-3">
+                                <h3 class="text-[14px]">Mango Tree</h3>
+                                <p class="text-xs text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ipsam quo vero maiores, nesciunt magni.
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-[14px] text-green-800">Fruit Tree</h3>
+                                    <p class="text-[14px]">500 Nok</p>
+                                </div>
+                                <button class="bg-green-900 text-white w-full rounded-md p-2">Add to Cart</button>
+                           </div>   
+                    </div>
+
+                    <div class="border border-green-500 rounded-md shadow-lg p-4">
+                            <img class="h-30 w-30 mx-auto" src="./assets/hero-leaf1.png"/>
+                            <div class="space-y-3">
+                                <h3 class="text-[14px]">Mango Tree</h3>
+                                <p class="text-xs text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ipsam quo vero maiores, nesciunt magni.
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-[14px] text-green-800">Fruit Tree</h3>
+                                    <p class="text-[14px]">500 Nok</p>
+                                </div>
+                                <button class="bg-green-900 text-white w-full rounded-md p-2">Add to Cart</button>
+                           </div>   
+                    </div>
+
+                    <div class="border border-green-500 rounded-md shadow-lg p-4">
+                            <img class="h-30 w-30 mx-auto" src="./assets/hero-leaf1.png"/>
+                            <div class="space-y-3">
+                                <h3 class="text-[14px]">Mango Tree</h3>
+                                <p class="text-xs text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ipsam quo vero maiores, nesciunt magni.
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-[14px] text-green-800">Fruit Tree</h3>
+                                    <p class="text-[14px]">500 Nok</p>
+                                </div>
+                                <button class="bg-green-900 text-white w-full rounded-md p-2">Add to Cart</button>
+                           </div>   
+                    </div>
+                </div>
+           </div>
+
+
+           <div id="carrt" class="grid col-span-1">
+
+           </div>
+       </div>
+    </section>
+
+    <!--About the campaign section-->
+    <section class="mt-[100px] w-7/12 md:h-[600px] mx-auto"> 
+       <h1 class="text-3xl font-semibold text-center">About the Campaign</h1>
+       <div class="flex flex-col md:flex-row">
         <div class="flex-1">
-            <img  class="h-full w-full object-contain" src="./assets/about.png" alt="a tree picture"/>
+            <img  class="h-[530px] w-full object-contain" src="./assets/about.png" alt="a tree picture"/>
         </div>
         <div class="text-[16px] text-gray-500 flex-1 md:py-[250px]">
             <p class="mb-5">Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.</p>
@@ -79,9 +174,10 @@
        </div> 
     </section>
 
-    <section class="mt-28 bg-[#cff0dc] h-[436px]">
-        <h1 class="text-3xl font-semibold text-center mb-10 pt-20">Our Impact</h1>
-        <div class="flex justify-around items-center w-10/12 mx-auto">
+    <!--Our impact section-->
+    <section class="mt-[100px] bg-[#cff0dc] p-7 md:h-[436px] mx-auto space-y-8">
+        <h1 class="text-3xl font-semibold text-center pt-20">Our Impact</h1>
+        <div class="flex flex-col gap-3 md:flex-row justify-around items-center w-10/12 mx-auto">
             <div class="bg-white rounded-lg px-4 py-9 min-h-[156px] min-w-[400px] space-y-3">
                 <h2 class="text-center text-[#15803d] text-3xl font-semibold">500k+</h2>
                 <p class="text-center text-gray-500">Trees Planted</p>
@@ -97,10 +193,11 @@
         </div>
     </section>
 
+    <!--footer-->
     <footer class="bg-[#166534] ">
         <h1 class="text-3xl  text-white font-semibold text-center mb-10 pt-20">Plant a Tree Today</h1>
         <div class="space-y-6">
-            <fieldset class="fieldset bg-[#15803D] rounded-box max-w-sm border p-9 mx-auto">               
+            <fieldset class="fieldset bg-[#15803D] rounded-box max-w-sm shadow-lg p-9 mx-auto">               
                 <input type="text" class="input" placeholder="Your Name" />
                 <input type="email" class="input" placeholder="Your Email Address" />
 
@@ -120,5 +217,8 @@
             <p class="text-center text-white py-6">© 2025 Green Earth. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!--Javascript file-->
+    <script src="./index.js"></script>
 </body>
 </html>
