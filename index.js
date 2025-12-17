@@ -28,6 +28,8 @@ const displayCategories = (categories) => {
 
 
 const loadPlants = (id) => {
+    document.getElementById("all-plants").classList.add("hidden");
+    document.getElementById("spinner").classList.remove("hidden");
     const url = "https://openapi.programming-hero.com/api/plants";
 
     fetch (url)
@@ -57,19 +59,28 @@ const displayPlants = (plants) => {
                      </div>`;
         
         plantsContainer.append(allPlants);
+
+    document.getElementById("all-plants").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
     }
 }
 
-const loadByCategories = (id) => {
+const loadByCategories = (id) =>  {
     const currentCategory = document.getElementById(`category-num-${id}`);
-    
     removeActive();
     currentCategory.classList.add("active");
+    
+    document.getElementById("all-plants").classList.add("hidden");
+    document.getElementById("spinner").classList.remove("hidden");
 
   fetch (`https://openapi.programming-hero.com/api/category/${id}`)
   .then(res => res.json())
   .then(data => displayPlants(data.plants));
-}
+
+  document.getElementById("all-plants").classList.remove("hidden");
+  document.getElementById("spinner").classList.add("hidden");
+  
+};
 
 loadPlants();
 loadCategories();
