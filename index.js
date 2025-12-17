@@ -1,5 +1,11 @@
 const url = "https://openapi.programming-hero.com/api/categories"
 
+const removeActive = () => {
+    const allCategories = document.querySelectorAll(".category");
+    allCategories.forEach (clikced => clikced.classList.remove("active"));
+}
+
+
 const loadCategories = () => {
     fetch (url)
     .then (res => res.json())
@@ -10,21 +16,18 @@ const displayCategories = (categories) => {
     const categoryContainer = document.getElementById("categories");
     categoryContainer.innerHTML= "";
     for(const category of categories){
-        const allCategory = document.createElement("div");
+        const allCategory = document.createElement("li");
 
         allCategory.innerHTML = 
-                  `<div>
-                        <ul class="space-y-6">
-                            <li class="text-[16px] text-gray-600 cursor-pointer">${category.category_name}</li>
-                        </ul>
-                   </div>`;
+                  `<li id="category-num-${category.id}" onclick="loadByCategories('${category.id}')" class="category text-[16px] text-gray-600 cursor-pointer">${category.category_name}</li>`;
         
                    categoryContainer.append(allCategory);
             
     }
 }
 
-const loadPlants = () => {
+
+const loadPlants = (id) => {
     const url = "https://openapi.programming-hero.com/api/plants";
 
     fetch (url)
@@ -57,20 +60,16 @@ const displayPlants = (plants) => {
     }
 }
 
-const loadByCategories = () => {
-  fetch (`https://openapi.programming-hero.com/api/category/${1}`)
+const loadByCategories = (id) => {
+    const currentCategory = document.getElementById(`category-num-${id}`);
+    
+    removeActive();
+    currentCategory.classList.add("active");
+
+  fetch (`https://openapi.programming-hero.com/api/category/${id}`)
   .then(res => res.json())
-  .then(data => displayCategories(data));
+  .then(data => displayPlants(data.plants));
 }
-
-
-
-
-
-
-
-
-
 
 loadPlants();
 loadCategories();

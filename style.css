@@ -2,3 +2,11 @@
     font-family: "Inter", sans-serif;
 }
 
+.active {
+    background-color: rgb(7, 82, 7);
+    color: White;
+    padding: 8px 20px;
+    border-radius: 5px;
+    
+}
+
