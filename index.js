@@ -1,4 +1,6 @@
 const url = "https://openapi.programming-hero.com/api/categories"
+let cart = [];
+let total = 0;
 
 const removeActive = () => {
     const allCategories = document.querySelectorAll(".category");
@@ -65,16 +67,17 @@ const displayPlants = (plants) => {
     for (const plant of plants) {
         const allPlants = document.createElement("div");
         allPlants.innerHTML = 
-                    `<div onclick="plantsdetails(${plant.id})" class="border border-green-500 rounded-md shadow-lg p-4 max-h-[450px]">
-                            <img class="h-50 w-full rounded-lg shadow-sm mx-auto" src="${plant.image}"/>
+                    `<div class="border border-green-500 rounded-md shadow-lg p-4 max-h-[450px]">
+                            <img onclick="plantsdetails(${plant.id})" class="plant-img h-50 w-full rounded-lg shadow-sm mx-auto" src="${plant.image}"/>
                             <div class="space-y-3 mt-4">
-                                <h3 class="text-[14px]">${plant.name}</h3>
+                                <h3 class="name text-[14px]">${plant.name}</h3>
                                 <p class="text-xs text-gray-600"> ${plant.description}</p>
                                 <div class="flex justify-between items-center">
                                     <h3 class="text-[14px] text-green-800">${plant.category}</h3>
-                                    <p class="text-[14px]"> ${plant.price} Nok</p>
+                                    <p class="text-[14px]"> 
+                                    <span class= "price"> ${plant.price} </span> Nok </p>
                                 </div>
-                                <button id="btn" class="bg-green-900 text-white w-full rounded-md p-2 cursor-pointer">Add to Cart</button>
+                                <button onclick="addToCart(this)" class="bg-green-900 text-white w-full rounded-md p-2 cursor-pointer">Add to Cart</button>
                            </div>   
                      </div>`;
         
@@ -103,7 +106,49 @@ const loadByCategories = (id) =>  {
 };
 
 
-
 loadPlants();
 loadCategories();
 
+const addToCart = (btn) => {
+    const card = btn.parentNode.parentNode;
+    const plantImg = card.querySelector(".plant-img").src;
+    const plantName = card.querySelector(".name").innerText;
+    let price = Number(card.querySelector(".price").innerText);
+    const selectedItem = {
+        plantName:plantName,
+        plantImage: plantImg,
+        plantPrice: price,
+    };
+    cart.push(selectedItem);
+    displayCart(cart);
+    total = total + price;
+    displayTotal(total);
+}
+
+const displayCart = (cart) => {
+const container = document.getElementById("cart-container");
+container.innerHTML = "";
+
+for (let item of cart){
+    const cartItem = document.createElement("div"); 
+    cartItem.innerHTML = `<div class="relative flex gap-4 items-center whitespace-nowrap bg-green-100 shadow-md rounded-md">
+                    <img class="h-10 w-10 rounded-lg" src="${item.plantImage}" alt=""/>
+                    <div class="">
+                        <h2 class="text-gray-600 font-semibold"> ${item.plantName} </h2>
+                        <p class="text-gray-600 font-medium"> ${item.plantPrice}Nok</p>
+                    </div>
+                    <i onclick="removeCart(this)" class="fa-solid fa-xmark absolute top-2 right-2 text-gray-600 cursor-pointer hover:text-red-600"></i>
+                </div>`;
+                container.append(cartItem);
+}
+
+}
+
+const displayTotal = (val) => {
+ document.getElementById("total-price").innerHTML = val;
+}
+
+const removeCart = (btn) => {
+    const item = btn.parentNode;
+    console.log(item);
+}
