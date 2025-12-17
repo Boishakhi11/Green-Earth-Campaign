@@ -2,11 +2,13 @@ const url = "https://openapi.programming-hero.com/api/categories"
 let cart = [];
 let total = 0;
 
+// remove active class
 const removeActive = () => {
     const allCategories = document.querySelectorAll(".category");
     allCategories.forEach (clikced => clikced.classList.remove("active"));
 }
 
+// load plant details
 const plantsdetails = (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`
     fetch (url)
@@ -14,6 +16,7 @@ const plantsdetails = (id) => {
     .then (data => displayPlantsDetails(data.plants));
 }
 
+//display plant details
 const displayPlantsDetails = (plant) => {
     console.log(plant)
       const displaydetails = document.getElementById("display-details");
@@ -28,12 +31,15 @@ const displayPlantsDetails = (plant) => {
     document.getElementById("my_modal_3").showModal();
 }
 
+//load categories
 const loadCategories = () => {
     fetch (url)
     .then (res => res.json())
     .then (data => displayCategories(data.categories));
 } 
 
+
+//display plant categories
 const displayCategories = (categories) => {
     const categoryContainer = document.getElementById("categories");
     categoryContainer.innerHTML= "";
@@ -48,7 +54,7 @@ const displayCategories = (categories) => {
     }
 }
 
-
+//load all plants
 const loadPlants = (id) => {
     document.getElementById("all-plants").classList.add("hidden");
     document.getElementById("spinner").classList.remove("hidden");
@@ -60,6 +66,7 @@ const loadPlants = (id) => {
 }
 
 
+//display plants
 const displayPlants = (plants) => {
     const plantsContainer = document.getElementById("plants-container");
     plantsContainer.innerHTML = "";
@@ -88,6 +95,7 @@ const displayPlants = (plants) => {
     }
 }
 
+//load plants by categories
 const loadByCategories = (id) =>  {
     const currentCategory = document.getElementById(`category-num-${id}`);
     removeActive();
@@ -109,11 +117,13 @@ const loadByCategories = (id) =>  {
 loadPlants();
 loadCategories();
 
+
+//add to cart feature
 const addToCart = (btn) => {
-    const card = btn.parentNode.parentNode;
-    const plantImg = card.querySelector(".plant-img").src;
-    const plantName = card.querySelector(".name").innerText;
-    let price = Number(card.querySelector(".price").innerText);
+    const plantCart = btn.parentNode.parentNode;
+    const plantImg = plantCart.querySelector(".plant-img").src;
+    const plantName = plantCart.querySelector(".name").innerText;
+    let price = Number(plantCart.querySelector(".price").innerText);
     const selectedItem = {
         plantName:plantName,
         plantImage: plantImg,
@@ -125,30 +135,48 @@ const addToCart = (btn) => {
     displayTotal(total);
 }
 
+
+//displaying items to cart
 const displayCart = (cart) => {
 const container = document.getElementById("cart-container");
 container.innerHTML = "";
 
 for (let item of cart){
     const cartItem = document.createElement("div"); 
-    cartItem.innerHTML = `<div class="relative flex gap-4 items-center whitespace-nowrap bg-green-100 shadow-md rounded-md">
+    cartItem.innerHTML = `<div class="relative flex flex-row gap-4 items-center whitespace-normal bg-green-100 shadow-md rounded-md">
                     <img class="h-10 w-10 rounded-lg" src="${item.plantImage}" alt=""/>
                     <div class="">
-                        <h2 class="text-gray-600 font-semibold"> ${item.plantName} </h2>
-                        <p class="text-gray-600 font-medium"> ${item.plantPrice}Nok</p>
+                        <h2 class="text-gray-600 font-semibold plant-title"> ${item.plantName} </h2>
+                        <p class="text-gray-600 font-medium plant-price"> ${item.plantPrice}Nok</p>
                     </div>
-                    <i onclick="removeCart(this)" class="fa-solid fa-xmark absolute top-2 right-2 text-gray-600 cursor-pointer hover:text-red-600"></i>
+                    <i onclick="removeCart(this)" class="fa-solid fa-xmark absolute top-[-1] right-0 md:top-2 md:right-2 text-gray-600 cursor-pointer hover:text-red-600"></i>
                 </div>`;
                 container.append(cartItem);
 }
 
 }
 
+
+//calculating total price
 const displayTotal = (val) => {
  document.getElementById("total-price").innerHTML = val;
 }
 
+
+// remove items from cart
 const removeCart = (btn) => {
     const item = btn.parentNode;
-    console.log(item);
+    const plantTitleToRemove = item.querySelector(".plant-title").innerText;
+    const plantPrice = parseFloat(item.querySelector(".plant-price").innerText);
+    console.log(plantPrice)
+
+
+    cart = cart.filter (
+        item => item.plantName != plantTitleToRemove
+    );
+    total = total -plantPrice; 
+
+    displayCart(cart);
+    displayTotal(total);
+    console.log(cart);
 }
