@@ -5,6 +5,26 @@ const removeActive = () => {
     allCategories.forEach (clikced => clikced.classList.remove("active"));
 }
 
+const plantsdetails = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
+    fetch (url)
+    .then (res => res.json())
+    .then (data => displayPlantsDetails(data.plants));
+}
+
+const displayPlantsDetails = (plant) => {
+    console.log(plant)
+      const displaydetails = document.getElementById("display-details");
+      displaydetails.innerHTML = `<div class="space-y-4">
+                                    <img class="h-70 w-100 rounded-lg shadow-sm mx-auto" src="${plant.image} " alt="plant image"/>
+                                    <div class="flex justify-between items-center">
+                                        <h1 class="text-xl font-semibold">${plant.name} </h1>
+                                        <p class="text-xl font-semibold">${plant.price} </p>
+                                    </div>
+                                    <p class="text-gray-600">${plant.description}</p>
+                                 </div>  `;
+    document.getElementById("my_modal_3").showModal();
+}
 
 const loadCategories = () => {
     fetch (url)
@@ -45,7 +65,7 @@ const displayPlants = (plants) => {
     for (const plant of plants) {
         const allPlants = document.createElement("div");
         allPlants.innerHTML = 
-                    `<div class="border border-green-500 rounded-md shadow-lg p-4 max-h-[450px]">
+                    `<div onclick="plantsdetails(${plant.id})" class="border border-green-500 rounded-md shadow-lg p-4 max-h-[450px]">
                             <img class="h-50 w-full rounded-lg shadow-sm mx-auto" src="${plant.image}"/>
                             <div class="space-y-3 mt-4">
                                 <h3 class="text-[14px]">${plant.name}</h3>
@@ -54,7 +74,7 @@ const displayPlants = (plants) => {
                                     <h3 class="text-[14px] text-green-800">${plant.category}</h3>
                                     <p class="text-[14px]"> ${plant.price} Nok</p>
                                 </div>
-                                <button class="bg-green-900 text-white w-full rounded-md p-2 cursor-pointer">Add to Cart</button>
+                                <button id="btn" class="bg-green-900 text-white w-full rounded-md p-2 cursor-pointer">Add to Cart</button>
                            </div>   
                      </div>`;
         
@@ -81,6 +101,8 @@ const loadByCategories = (id) =>  {
   document.getElementById("spinner").classList.add("hidden");
   
 };
+
+
 
 loadPlants();
 loadCategories();
